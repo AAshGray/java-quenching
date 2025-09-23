@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class Practice {
@@ -171,8 +174,17 @@ public class Practice {
      * @return the sum of the nodes at the given level
      */
     public static int sumAtLevel(BinaryTreeNode<Integer> root, int level) {
-        return 0;
+     
+        return traverse(root, level, 1);
     }
+
+    private static int traverse(BinaryTreeNode<Integer> root, int targetLevel, int currentLevel) {
+        if (root == null) return 0;
+
+        if (currentLevel == targetLevel) return root.data;
+
+        return traverse(root.left, targetLevel, currentLevel+1) + traverse(root.right, targetLevel, currentLevel+1);
+    }   
 
 
     /**
