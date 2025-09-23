@@ -66,7 +66,7 @@ public class Practice {
      */
     public static Set<String> adults(Map<String, Integer> ages) {
         if (ages == null) throw new NullPointerException();
-        
+
         Set<String> adults = new HashSet<String>();
 
         for (String person : ages.keySet()) {
@@ -86,7 +86,17 @@ public class Practice {
      * @throws IllegalArgumentException if head is null
      */
     public static int biggestNumber(ListNode<Integer> head) {
-        return 0;
+        if (head == null) throw new IllegalArgumentException();
+        int max = head.data;
+        
+        ListNode<Integer> current = head.next;
+        
+        while (current != null) {
+            if (current.data > max) max = current.data;
+            current = current.next;
+        }
+        
+        return max;
     }
 
     /**
