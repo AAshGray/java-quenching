@@ -1,9 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 
 public class Practice {
@@ -178,7 +175,7 @@ public class Practice {
         return traverse(root, level, 1);
     }
 
-    private static int traverse(BinaryTreeNode<Integer> root, int targetLevel, int currentLevel) {
+    public static int traverse(BinaryTreeNode<Integer> root, int targetLevel, int currentLevel) {
         if (root == null) return 0;
 
         if (currentLevel == targetLevel) return root.data;
@@ -198,8 +195,32 @@ public class Practice {
      * @return true if the sums are equal, false otherwise
      */
     public static boolean sumMatch(BinaryTreeNode<Integer> root, ListNode<Integer> head) {
+        int treeTotal = traverseTreeSum(root);
+        int listTotal = traverseListSum(head);
+
+        if (treeTotal == listTotal) return true;
+        
         return false;
     }
+
+    public static int traverseTreeSum(BinaryTreeNode<Integer> root) {
+        if (root == null) return 0;
+
+        return root.data + traverseTreeSum(root.left) + traverseTreeSum(root.right);
+    }  
+
+    public static int traverseListSum(ListNode<Integer> head) {
+        if (head == null) return 0;
+
+        ListNode<Integer> current = head;
+        int total = 0;
+        while (current != null) {
+            total+=current.data;
+            current = current.next;
+        }
+
+        return total;
+    }  
 
     /**
      * Returns the sum of all the vertices in a graph that are reachable from a given
